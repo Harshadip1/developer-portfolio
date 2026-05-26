@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Profile | Portfolio Builder</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/auth.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body class="profile-page">
+  <header class="header scrolled" id="header">
+    <nav class="nav container">
+      <a href="profile.html" class="nav__logo">
+        <span class="nav__logo-icon">&lt;/&gt;</span>
+        <span>Portfolio<span class="text-gradient">Builder</span></span>
+      </a>
+      <div class="dashboard-actions">
+        <button type="button" class="btn btn--accent" id="btn-test-portfolio">
+          <i class="fas fa-eye"></i>
+          <span>Test Portfolio</span>
+        </button>
+        <button type="button" class="btn btn--outline" id="btn-logout">
+          <i class="fas fa-sign-out-alt"></i>
+          <span>Logout</span>
+        </button>
+      </div>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+        <i class="fas fa-moon" id="theme-icon"></i>
+      </button>
+    </nav>
+  </header>
+
+  <main class="container">
+    <div class="dashboard-header">
+      <div class="dashboard-header__top">
+        <div>
+          <h1>Welcome, <span class="text-gradient" id="user-greeting">User</span></h1>
+          <p>Fill in your details below. Save your profile, then click <strong>Test Portfolio</strong> to preview your live site.</p>
+        </div>
+      </div>
+      <div class="empty-portfolio-banner" id="empty-banner" hidden>
+        Add at least your name and a short bio, then save to preview your portfolio.
+      </div>
+    </div>
+
+    <div class="profile-layout">
+      <nav class="profile-nav" id="profile-nav">
+        <button type="button" class="profile-nav__link active" data-section="basic">Basic Info</button>
+        <button type="button" class="profile-nav__link" data-section="about">About & Stats</button>
+        <button type="button" class="profile-nav__link" data-section="skills">Skills</button>
+        <button type="button" class="profile-nav__link" data-section="projects">Projects</button>
+        <button type="button" class="profile-nav__link" data-section="services">Services</button>
+        <button type="button" class="profile-nav__link" data-section="experience">Experience</button>
+        <button type="button" class="profile-nav__link" data-section="testimonials">Testimonials</button>
+        <button type="button" class="profile-nav__link" data-section="social">Social & Contact</button>
+      </nav>
+
+      <div class="profile-content">
+        <!-- Basic -->
+        <section class="profile-section active" id="section-basic">
+          <h2>Basic Information</h2>
+          <p class="section-hint">This appears in your hero section and site title.</p>
+          <div class="profile-form-card glass">
+            <div class="form-group">
+              <input type="text" id="pf-name" placeholder=" " required>
+              <label for="pf-name">Full Name *</label>
+            </div>
+            <div class="form-group">
+              <input type="text" id="pf-portfolio-title" placeholder=" ">
+              <label for="pf-portfolio-title">Portfolio Site Title</label>
+            </div>
+            <div class="form-group">
+              <input type="text" id="pf-titles" placeholder=" ">
+              <label for="pf-titles">Job Titles (comma-separated for typing animation)</label>
+              <p class="form-hint">e.g. Full Stack Developer, UI/UX Designer, Android Developer</p>
+            </div>
+            <div class="form-group">
+              <textarea id="pf-tagline" rows="2" placeholder=" "></textarea>
+              <label for="pf-tagline">Hero Tagline</label>
+            </div>
+            <div class="form-group">
+              <input type="url" id="pf-photo-url" placeholder=" ">
+              <label for="pf-photo-url">Profile Photo URL</label>
+              <p class="form-hint">Or upload an image (stored locally in your browser)</p>
+              <input type="file" id="pf-photo-file" accept="image/*" class="file-input">
+              <img id="pf-photo-preview" class="photo-preview" alt="Preview">
+            </div>
+            <div class="form-group">
+              <input type="url" id="pf-resume" placeholder=" ">
+              <label for="pf-resume">Resume / CV Link (URL)</label>
+            </div>
+          </div>
+        </section>
+
+        <!-- About -->
+        <section class="profile-section" id="section-about">
+          <h2>About & Statistics</h2>
+          <p class="section-hint">Your story and key numbers shown on the portfolio.</p>
+          <div class="profile-form-card glass">
+            <div class="form-group">
+              <textarea id="pf-bio" rows="4" placeholder=" "></textarea>
+              <label for="pf-bio">About Paragraph 1</label>
+            </div>
+            <div class="form-group">
+              <textarea id="pf-bio2" rows="3" placeholder=" "></textarea>
+              <label for="pf-bio2">About Paragraph 2</label>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <input type="text" id="pf-location" placeholder=" ">
+                <label for="pf-location">Location</label>
+              </div>
+              <div class="form-group">
+                <input type="text" id="pf-education" placeholder=" ">
+                <label for="pf-education">Education</label>
+              </div>
+            </div>
+            <div class="form-group">
+              <input type="text" id="pf-experience-label" placeholder=" ">
+              <label for="pf-experience-label">Experience Label (e.g. 5+ Years)</label>
+            </div>
+            <div class="form-group">
+              <input type="text" id="pf-technologies" placeholder=" ">
+              <label for="pf-technologies">Tech Stack Tags (comma-separated)</label>
+            </div>
+          </div>
+          <div class="profile-form-card glass">
+            <h3>Statistics Counters</h3>
+            <div class="form-row">
+              <div class="form-group">
+                <input type="number" id="pf-stat-projects" min="0" placeholder=" ">
+                <label for="pf-stat-projects">Projects Completed</label>
+              </div>
+              <div class="form-group">
+                <input type="number" id="pf-stat-clients" min="0" placeholder=" ">
+                <label for="pf-stat-clients">Happy Clients</label>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <input type="number" id="pf-stat-years" min="0" placeholder=" ">
+                <label for="pf-stat-years">Years Experience</label>
+              </div>
+              <div class="form-group">
+                <input type="number" id="pf-stat-tech" min="0" placeholder=" ">
+                <label for="pf-stat-tech">Technologies Mastered</label>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Skills -->
+        <section class="profile-section" id="section-skills">
+          <h2>Skills</h2>
+          <p class="section-hint">Add skills as JSON lines: name|percent|category (frontend, backend, android, database, uiux, tools)</p>
+          <div class="profile-form-card glass">
+            <div class="form-group">
+              <textarea id="pf-skills-raw" rows="12" placeholder=" "></textarea>
+              <label for="pf-skills-raw">Skills List</label>
+              <p class="form-hint">One per line, e.g.<br>HTML5|95|frontend<br>React|88|frontend<br>Node.js|85|backend</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Projects -->
+        <section class="profile-section" id="section-projects">
+          <h2>Projects</h2>
+          <p class="section-hint">Showcase your work on the portfolio.</p>
+          <div class="dynamic-list" id="projects-list"></div>
+          <button type="button" class="btn btn--outline btn-add-item" id="add-project">
+            <i class="fas fa-plus"></i> Add Project
+          </button>
+        </section>
+
+        <!-- Services -->
+        <section class="profile-section" id="section-services">
+          <h2>Services</h2>
+          <p class="section-hint">Services you offer.</p>
+          <div class="dynamic-list" id="services-list"></div>
+          <button type="button" class="btn btn--outline btn-add-item" id="add-service">
+            <i class="fas fa-plus"></i> Add Service
+          </button>
+        </section>
+
+        <!-- Experience -->
+        <section class="profile-section" id="section-experience">
+          <h2>Experience & Education</h2>
+          <div class="dynamic-list" id="experience-list"></div>
+          <button type="button" class="btn btn--outline btn-add-item" id="add-experience">
+            <i class="fas fa-plus"></i> Add Entry
+          </button>
+          <div class="profile-form-card glass" style="margin-top:1.5rem">
+            <h3>Certifications</h3>
+            <div class="dynamic-list" id="certs-list"></div>
+            <button type="button" class="btn btn--outline btn-add-item" id="add-cert">
+              <i class="fas fa-plus"></i> Add Certification
+            </button>
+          </div>
+        </section>
+
+        <!-- Testimonials -->
+        <section class="profile-section" id="section-testimonials">
+          <h2>Testimonials</h2>
+          <div class="dynamic-list" id="testimonials-list"></div>
+          <button type="button" class="btn btn--outline btn-add-item" id="add-testimonial">
+            <i class="fas fa-plus"></i> Add Testimonial
+          </button>
+        </section>
+
+        <!-- Social -->
+        <section class="profile-section" id="section-social">
+          <h2>Social & Contact</h2>
+          <div class="profile-form-card glass">
+            <div class="form-row">
+              <div class="form-group">
+                <input type="email" id="pf-email" placeholder=" ">
+                <label for="pf-email">Email</label>
+              </div>
+              <div class="form-group">
+                <input type="tel" id="pf-phone" placeholder=" ">
+                <label for="pf-phone">Phone</label>
+              </div>
+            </div>
+            <div class="form-group">
+              <input type="url" id="pf-github" placeholder=" ">
+              <label for="pf-github">GitHub URL</label>
+            </div>
+            <div class="form-group">
+              <input type="url" id="pf-linkedin" placeholder=" ">
+              <label for="pf-linkedin">LinkedIn URL</label>
+            </div>
+            <div class="form-group">
+              <input type="url" id="pf-twitter" placeholder=" ">
+              <label for="pf-twitter">Twitter / X URL</label>
+            </div>
+            <div class="form-group">
+              <input type="url" id="pf-dribbble" placeholder=" ">
+              <label for="pf-dribbble">Dribbble URL</label>
+            </div>
+            <div class="form-group">
+              <input type="url" id="pf-instagram" placeholder=" ">
+              <label for="pf-instagram">Instagram URL</label>
+            </div>
+            <div class="form-group">
+              <textarea id="pf-map" rows="3" placeholder=" "></textarea>
+              <label for="pf-map">Google Maps Embed URL (iframe src)</label>
+            </div>
+          </div>
+        </section>
+
+        <div class="save-bar">
+          <span class="save-status" id="save-status">Unsaved changes</span>
+          <div class="dashboard-actions">
+            <button type="button" class="btn btn--primary" id="btn-save-profile">
+              <i class="fas fa-save"></i>
+              <span>Save Profile</span>
+            </button>
+            <button type="button" class="btn btn--accent" id="btn-test-portfolio-2">
+              <i class="fas fa-eye"></i>
+              <span>Test Portfolio</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="js/storage.js"></script>
+  <script src="js/profile.js"></script>
+</body>
+</html>
