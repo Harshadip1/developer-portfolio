@@ -361,8 +361,9 @@
       socialIcon('instagram', 'fa-instagram')
     ].filter(Boolean).join('');
 
-    const map = profile.mapEmbed
-      ? `<div class="contact__map reveal"><iframe src="${esc(profile.mapEmbed)}" width="100%" height="350" style="border:0" allowfullscreen loading="lazy" title="Location map"></iframe></div>`
+    const mapSrc = profile.mapEmbed && /^https:\/\//.test(profile.mapEmbed.trim()) ? profile.mapEmbed.trim() : '';
+    const map = mapSrc
+      ? `<div class="contact__map reveal"><iframe src="${mapSrc}" width="100%" height="350" style="border:0" allowfullscreen loading="lazy" title="Location map"></iframe></div>`
       : '';
 
     return `

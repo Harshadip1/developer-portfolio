@@ -372,6 +372,18 @@
       reader.readAsDataURL(file);
     });
 
+    document.getElementById('pf-photo-url')?.addEventListener('input', (e) => {
+      const url = e.target.value.trim();
+      const preview = document.getElementById('pf-photo-preview');
+      if (url) {
+        preview.src = url;
+        preview.classList.add('visible');
+      } else {
+        preview.classList.remove('visible');
+      }
+      markDirty();
+    });
+
     document.getElementById('add-project')?.addEventListener('click', () => {
       document.getElementById('projects-list').appendChild(createProjectItem());
       markDirty();

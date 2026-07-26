@@ -88,6 +88,10 @@
 
     overlay.addEventListener('click', closeMenu);
     links.forEach((link) => link.addEventListener('click', closeMenu));
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && menu?.classList.contains('open')) closeMenu();
+    });
   }
 
   /* ---- Active nav link on scroll ---- */
@@ -185,7 +189,8 @@
 
     function goTo(index) {
       current = index;
-      track.style.transform = `translateX(-${current * 100}%)`;
+      const slideWidth = slides[0]?.offsetWidth || track.parentElement.offsetWidth;
+      track.style.transform = `translateX(-${current * slideWidth}px)`;
       dots.forEach((d, i) => d.classList.toggle('active', i === current));
     }
 
@@ -203,6 +208,20 @@
 
     track.parentElement?.addEventListener('mouseenter', stopAutoplay);
     track.parentElement?.addEventListener('mouseleave', startAutoplay);
+
+    // Touch swipe support
+    let touchStartX = 0;
+    track.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].clientX;
+      stopAutoplay();
+    }, { passive: true });
+    track.addEventListener('touchend', (e) => {
+      const dx = e.changedTouches[0].clientX - touchStartX;
+      if (Math.abs(dx) > 40) {
+        goTo(dx < 0 ? (current + 1) % slides.length : (current - 1 + slides.length) % slides.length);
+      }
+      startAutoplay();
+    }, { passive: true });
 
     startAutoplay();
   }

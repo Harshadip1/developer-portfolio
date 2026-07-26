@@ -250,10 +250,24 @@
           const activePanel = document.querySelector('.skills__panel.active');
           if (activePanel) {
             activePanel.querySelectorAll('.skill-bar__fill').forEach((bar) => {
+              bar.style.transition = 'none';
               bar.style.width = '0';
-              requestAnimationFrame(() => {
-                bar.style.width = `${bar.dataset.width}%`;
-              });
+              // Force reflow before re-enabling transition
+              bar.getBoundingClientRect();
+              bar.style.transition = '';
+              bar.style.width = `${bar.dataset.width}%`;
+            });
+            activePanel.querySelectorAll('.skill-circle').forEach((circle) => {
+              const percent = parseInt(circle.dataset.percent, 10) || 0;
+              const progress = circle.querySelector('.skill-circle__progress');
+              if (progress) {
+                const circumference = 2 * Math.PI * 54;
+                progress.style.transition = 'none';
+                progress.style.strokeDashoffset = circumference;
+                progress.getBoundingClientRect();
+                progress.style.transition = '';
+                progress.style.strokeDashoffset = circumference - (percent / 100) * circumference;
+              }
             });
           }
         }, 50);
@@ -295,9 +309,10 @@
             const elapsed = now - start;
             const progress = Math.min(elapsed / duration, 1);
             const eased = 1 - Math.pow(1 - progress, 3);
-            el.textContent = Math.floor(eased * target) + (target >= 10 ? '+' : '');
+            const current = Math.floor(eased * target);
+            el.textContent = current + (progress < 1 ? '' : target >= 1 ? '+' : '');
             if (progress < 1) requestAnimationFrame(update);
-            else el.textContent = target + '+';
+            else el.textContent = target + (target >= 1 ? '+' : '');
           }
 
           requestAnimationFrame(update);

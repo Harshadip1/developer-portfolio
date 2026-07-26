@@ -165,7 +165,8 @@ const PortfolioStorage = (function () {
     getCurrentProfile() {
       const session = readSession();
       if (!session) return null;
-      return getProfile(session.userId) || defaultProfile({ email: session.email, name: session.name });
+      const profiles = getProfiles();
+      return profiles[session.userId] || defaultProfile({ email: session.email, name: session.name });
     },
 
     getTheme() {
